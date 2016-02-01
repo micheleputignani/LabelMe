@@ -5,11 +5,11 @@ import android.graphics.Bitmap;
 /**
  * Created by Mirko Putignani on 31/01/2016.
  */
-public class ImageItem {
+public class GridViewItem {
     private Bitmap image;
     private String title;
 
-    public ImageItem(Bitmap image, String title) {
+    public GridViewItem(Bitmap image, String title) {
         super();
         this.image = image;
         this.title = title;

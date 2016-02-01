@@ -2,26 +2,23 @@ package src.com.labelme.core;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import src.com.labelme.R;
-import src.com.labelme.adapter.GridViewAdapter;
 import src.com.labelme.adapter.NavigationDrawerAdapter;
 import src.com.labelme.fragment.HelpFragment;
 import src.com.labelme.fragment.HomeFragment;
@@ -29,7 +26,6 @@ import src.com.labelme.fragment.InfoFragment;
 import src.com.labelme.fragment.LabelFragment;
 import src.com.labelme.fragment.ProfileFragment;
 import src.com.labelme.fragment.SettingsFragment;
-import src.com.labelme.model.DetailsActivity;
 import src.com.labelme.model.NavDrawerItem;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,27 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavigationDrawerAdapter adapter;
 
-    //GridView
-    private GridView gridView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        //GridLayout
-        gridView = (GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new GridViewAdapter(this));
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),"clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
-                intent.putExtra("id", position);
-                startActivity(intent);
-            }
-        });
 
         mTitle = mDrawerTitle = getTitle();
 
@@ -78,26 +57,25 @@ public class MainActivity extends AppCompatActivity {
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);
+        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-        navDrawerItems = new ArrayList<NavDrawerItem>();
+        navDrawerItems = new ArrayList<>();
 
         // adding nav drawer items to array
         // Home
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-        // Find People
+        // Labels
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        // Photos
+        // Profile
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // Communities, Will add a counter here
+        // Settings
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-        // Pages
+        // Help
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // What's hot, We  will add a counter here
+        // Info
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 
 
@@ -107,13 +85,14 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavigationDrawerAdapter(getApplicationContext(),
-                navDrawerItems);
+        adapter = new NavigationDrawerAdapter(getApplicationContext(), navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, //nav menu toggle icon
@@ -136,18 +115,19 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             // on first time display view for first nav item
-            displayView(0);
+            displayView(0, navDrawerItems);
         }
     }
 
     /**
      * Slide menu item click listener
      */
-    private class SlideMenuClickListener implements ListView.OnItemClickListener {
+    private class SlideMenuClickListener implements
+            ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // display view for selected nav drawer item
-            displayView(position);
+            displayView(position, MainActivity.this.navDrawerItems);
         }
     }
 
@@ -186,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Diplaying fragment view for selected nav drawer list item
      */
-    private void displayView(int position) {
+    private void displayView(int position, ArrayList<NavDrawerItem> nav) {
         // update the main content by replacing fragments
         Fragment fragment = null;
         switch (position) {
@@ -221,7 +201,8 @@ public class MainActivity extends AppCompatActivity {
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
-            setTitle(navMenuTitles[position]);
+            String title = navMenuTitles[position];
+            setTitle(title);
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
             // error in creating fragment

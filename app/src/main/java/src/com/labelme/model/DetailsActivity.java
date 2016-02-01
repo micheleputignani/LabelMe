@@ -12,7 +12,7 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.details);
+        setContentView(R.layout.details_image);
 
         //get intent data
         Intent intent = getIntent();
@@ -21,7 +21,7 @@ public class DetailsActivity extends AppCompatActivity {
         int position = intent.getExtras().getInt("id");
         GridViewAdapter gridViewAdapter = new GridViewAdapter(this);
 
-        ImageView imageView = (ImageView) findViewById(R.id.image_details);
+        ImageView imageView = (ImageView) findViewById(R.id.full_image_view);
         imageView.setImageResource(gridViewAdapter.thumbs_ids[position]);
     }
 }

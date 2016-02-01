@@ -28,5 +28,4 @@ public class NavDrawerItem {
     public void setIcon(int icon) {
         this.icon = icon;
     }
-
 }

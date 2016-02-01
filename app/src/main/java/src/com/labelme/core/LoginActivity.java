@@ -83,7 +83,7 @@ public class LoginActivity extends Activity {
     }
 
     /**
-     * function to verify login details
+     * function to verify login details_image
      */
     private boolean checkLogin() {
         boolean valid = true;
