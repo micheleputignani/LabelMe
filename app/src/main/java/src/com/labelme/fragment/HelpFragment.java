@@ -10,11 +10,11 @@ import src.com.labelme.R;
 
 public class HelpFragment extends Fragment {
 
-    public HelpFragment(){}
+    public HelpFragment() {
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_help, container, false);
 

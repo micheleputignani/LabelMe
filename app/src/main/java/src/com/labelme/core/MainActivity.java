@@ -4,14 +4,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -20,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -33,14 +30,12 @@ import src.com.labelme.fragment.LabelFragment;
 import src.com.labelme.fragment.ProfileFragment;
 import src.com.labelme.fragment.SettingsFragment;
 import src.com.labelme.model.DetailsActivity;
-import src.com.labelme.model.ImageItem;
 import src.com.labelme.model.NavDrawerItem;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private ActionBar actionBar;
 
     // nav drawer title
     private CharSequence mDrawerTitle;
@@ -55,27 +50,24 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavigationDrawerAdapter adapter;
 
+    //GridView
     private GridView gridView;
-    private GridViewAdapter gridViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        //GridView
+        //GridLayout
         gridView = (GridView) findViewById(R.id.gridView);
-        gridViewAdapter = new GridViewAdapter(this, R.layout.grid_item_layout, getData());
-        gridView.setAdapter(gridViewAdapter);
+        gridView.setAdapter(new GridViewAdapter(this));
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ImageItem item = (ImageItem) parent.getItemAtPosition(position);
-                //Create intent
-                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-                intent.putExtra("title", item.getTitle());
-                intent.putExtra("image", item.getImage());
-                //Start details activity
+                Toast.makeText(getApplicationContext(),"clicked", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
+                intent.putExtra("id", position);
                 startActivity(intent);
             }
         });
@@ -97,16 +89,17 @@ public class MainActivity extends AppCompatActivity {
         // adding nav drawer items to array
         // Home
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-        // Labels
+        // Find People
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-        // Profile
+        // Photos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-        // Settings
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "22"));
-        // Help and feedback
+        // Communities, Will add a counter here
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+        // Pages
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        // Info
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1), true, "50+"));
+        // What's hot, We  will add a counter here
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -114,12 +107,13 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
         // setting the nav drawer list adapter
-        adapter = new NavigationDrawerAdapter(getApplicationContext(), navDrawerItems);
+        adapter = new NavigationDrawerAdapter(getApplicationContext(),
+                navDrawerItems);
         mDrawerList.setAdapter(adapter);
 
         // enabling action bar app icon and behaving it as toggle button
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, //nav menu toggle icon
@@ -149,11 +143,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Slide menu item click listener
      */
-    private class SlideMenuClickListener implements
-            ListView.OnItemClickListener {
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // display view for selected nav drawer item
             displayView(position);
         }
@@ -260,19 +252,6 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    private ArrayList<ImageItem> getData() {
-        final ArrayList<ImageItem> imageItems = new ArrayList<>();
-        // Todo: query per scaricare immagini da db
-        TypedArray imgs = getResources().obtainTypedArray(R.array.image_ids);
-        for (int i = 0; i < imgs.length(); i++) {
-            Resources res = getApplicationContext().getResources();
-            int id = imgs.getIndex(i);
-            Bitmap bitmap = BitmapFactory.decodeResource(res, id);
-            imageItems.add(new ImageItem(bitmap, "Image#" + i));
-        }
-        return imageItems;
     }
 
 }

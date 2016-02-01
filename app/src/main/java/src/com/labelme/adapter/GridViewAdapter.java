@@ -1,58 +1,53 @@
 package src.com.labelme.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import src.com.labelme.R;
-import src.com.labelme.model.ImageItem;
 
 /**
  * Created by Mirko Putignani on 31/01/2016.
  */
-public class GridViewAdapter extends ArrayAdapter {
+public class GridViewAdapter extends BaseAdapter {
     private Context context;
-    private int layoutResourceId;
-    private ArrayList data = new ArrayList();
+    public Integer[] thumbs_ids = {R.drawable.img1, R.drawable.img2, R.drawable.img3};
 
-    public GridViewAdapter(Context context, int layoutResourceId, ArrayList data) {
-        super(context, layoutResourceId, data);
-        this.layoutResourceId = layoutResourceId;
+    public GridViewAdapter(Context context) {
         this.context = context;
-        this.data = data;
+    }
+
+    @Override
+    public int getCount() {
+        return thumbs_ids.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
-        ViewHolder holder = null;
+        ImageView imageView;
 
-        if (row == null) {
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            row = inflater.inflate(layoutResourceId, parent, false);
-            holder = new ViewHolder();
-            holder.imageTitle = (TextView) row.findViewById(R.id.text);
-            holder.image = (ImageView) row.findViewById(R.id.image);
-            row.setTag(holder);
+        if (convertView == null) {
+            imageView = new ImageView(context);
+            imageView.setLayoutParams(new GridView.LayoutParams(350, 350));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setPadding(8, 8, 8, 8);
         } else {
-            holder = (ViewHolder) row.getTag();
+            imageView = (ImageView) convertView;
         }
-
-        ImageItem item = (ImageItem) data.get(position);
-        holder.imageTitle.setText(item.getTitle());
-        holder.image.setImageBitmap(item.getImage());
-        return row;
-    }
-
-    static class ViewHolder {
-        TextView imageTitle;
-        ImageView image;
+        imageView.setImageResource(thumbs_ids[position]);
+        return imageView;
     }
 }

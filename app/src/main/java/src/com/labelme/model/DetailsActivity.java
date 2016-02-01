@@ -1,16 +1,12 @@
 package src.com.labelme.model;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import src.com.labelme.R;
+import src.com.labelme.adapter.GridViewAdapter;
 
-/**
- * Created by Mirko Putignani on 31/01/2016.
- */
 public class DetailsActivity extends AppCompatActivity {
 
     @Override
@@ -18,13 +14,14 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details);
 
-        String title=getIntent().getStringExtra("title");
-        Bitmap bitmap = getIntent().getParcelableExtra("image");
+        //get intent data
+        Intent intent = getIntent();
 
-        TextView titleTextView = (TextView) findViewById(R.id.title);
-        titleTextView.setText(title);
+        //selected image id
+        int position = intent.getExtras().getInt("id");
+        GridViewAdapter gridViewAdapter = new GridViewAdapter(this);
 
-        ImageView imageView = (ImageView) findViewById(R.id.image);
-        imageView.setImageBitmap(bitmap);
+        ImageView imageView = (ImageView) findViewById(R.id.image_details);
+        imageView.setImageResource(gridViewAdapter.thumbs_ids[position]);
     }
 }
