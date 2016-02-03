@@ -17,8 +17,9 @@
     <color name="iron">#CCCCCC</color>
     <color name="primary">#EA4C88</color>
     <color name="bg_progressDialog">#26ae90</color>
+
     <!-- navigation drawer -->
-    <color name="colorPrimary">#26AE90</color>
+    <color name="colorPrimary">#26ae90</color>
     <color name="colorPrimaryDark">#186F5C</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
@@ -29,4 +30,6 @@
     <color name="list_background">#3A4148</color>
     <color name="list_background_pressed">#186F5C</color>
     <color name="list_divider">#272727</color>
+
+
 </resources>

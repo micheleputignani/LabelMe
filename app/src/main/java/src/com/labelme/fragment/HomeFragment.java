@@ -1,8 +1,13 @@
 package src.com.labelme.fragment;
 
-import android.app.Fragment;
+/**
+ * Created by Ravi on 29/07/15.
+ */
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +21,13 @@ import src.com.labelme.model.DetailsActivity;
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     public HomeFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -24,7 +36,19 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         GridView gridView = (GridView) view.findViewById(R.id.gridView);
         gridView.setAdapter(new GridViewAdapter(view.getContext()));
         gridView.setOnItemClickListener(this);
+        // Inflate the layout for this fragment
         return view;
+    }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 
     @Override

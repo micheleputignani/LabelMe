@@ -1,11 +1,11 @@
 package src.com.labelme.model;
 
 public class NavDrawerItem {
-
     private String title;
     private int icon;
 
     public NavDrawerItem() {
+
     }
 
     public NavDrawerItem(String title, int icon) {
@@ -14,11 +14,7 @@ public class NavDrawerItem {
     }
 
     public String getTitle() {
-        return this.title;
-    }
-
-    public int getIcon() {
-        return this.icon;
+        return title;
     }
 
     public void setTitle(String title) {
@@ -27,5 +23,9 @@ public class NavDrawerItem {
 
     public void setIcon(int icon) {
         this.icon = icon;
+    }
+
+    public int getIcon() {
+        return this.icon;
     }
 }
