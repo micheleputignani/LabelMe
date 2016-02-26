@@ -1,33 +1,51 @@
 package src.com.labelme.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import src.com.labelme.R;
 
-/**
- * Created by Mirko Putignani on 31/01/2016.
- */
 public class GridViewAdapter extends BaseAdapter {
+
+    // Context
     private Context context;
-    public Integer[] thumbs_ids = {R.drawable.img1, R.drawable.img2, R.drawable.img3};
+
+    // Array List that would contain the ids and the urls for the images
+    public static ArrayList<String> ids;
+    public static ArrayList<String> images;
+    LayoutInflater inflater;
+
+    // Gets the context so it can be used later
+    public GridViewAdapter(Context context, ArrayList<String> ids, ArrayList<String> images) {
+        // Getting all the values
+        this.context = context;
+        this.ids = ids;
+        this.images = images;
+        inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
 
     public GridViewAdapter(Context context) {
         this.context = context;
     }
 
+    // Total number of things contained within the adapter
     @Override
     public int getCount() {
-        return thumbs_ids.length;
+        return images.size();
     }
 
+    // Require for the structure. Can be used to get the id of an item in the adapter for manual control.
     @Override
     public Object getItem(int position) {
-        return thumbs_ids[position];
+        return images.get(position);
     }
 
     @Override
@@ -37,10 +55,18 @@ public class GridViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(thumbs_ids[position]);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setLayoutParams(new GridView.LayoutParams(350, 350));
-        return imageView;
+        Holder holder = new Holder();
+        View rowView;
+
+        rowView = inflater.inflate(R.layout.grid_single, null);
+        holder.imageView = (ImageView) rowView.findViewById(R.id.grid_image);
+
+        Picasso.with(context).load(getItem(position).toString()).into(holder.imageView);
+
+        return rowView;
+    }
+
+    public class Holder {
+        ImageView imageView;
     }
 }

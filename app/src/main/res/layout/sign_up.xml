@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/bg_register"
+    android:background="@color/primary"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp">
@@ -11,82 +11,83 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="72dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"
-            android:src="@drawable/logo" />
+            android:layout_marginBottom="8dp"
+            android:background="@color/primary"
+            android:src="@drawable/labelme_logo" />
 
-        <!-- Name Label -->
-            <EditText
-                android:id="@+id/input_name"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/input_register_bg"
-                android:hint="@string/hint_name"
-                android:inputType="textCapWords"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:textColor="@color/input_register"
-                android:textColorHint="@color/input_register_hint" />
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@color/primary"
+            android:elevation="2dp"
+            android:hint="@string/hint_name"
+            android:inputType="textCapWords"
+            android:padding="16dp"
+            android:singleLine="true"
+            android:textColor="@color/accent"
+            android:textColorHint="@color/hint" />
 
-        <!--  Email Label -->
         <EditText
             android:id="@+id/input_email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/input_register_bg"
+            android:layout_marginBottom="8dp"
+            android:background="@color/primary"
+            android:elevation="2dp"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
-            android:padding="10dp"
+            android:padding="16dp"
             android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColor="@color/accent"
+            android:textColorHint="@color/hint" />
 
-        <!-- Password Label -->
         <EditText
             android:id="@+id/input_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/input_register_bg"
+            android:layout_marginBottom="8dp"
+            android:background="@color/primary"
+            android:elevation="2dp"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:padding="10dp"
+            android:padding="16dp"
             android:singleLine="true"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint" />
+            android:textColor="@color/accent"
+            android:textColorHint="@color/hint" />
 
-        <!-- Register Button -->
+        <!-- Login button -->
         <Button
             android:id="@+id/btn_register"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@color/btn_register"
-            android:text="@string/btn_register"
-            android:textColor="@color/white" />
+            android:layout_marginTop="16dp"
+            android:background="@color/button"
+            android:elevation="2dp"
+            android:text="@string/btn_login"
+            android:textColor="@color/accent" />
 
-        <!-- Link to Login Screen -->
+        <!-- Link to register screen -->
         <TextView
             android:id="@+id/link_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"
-            android:background="@null"
+            android:background="@color/primary"
             android:gravity="center"
-            android:text="@string/btn_link_to_login"
+            android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15dip" />
+            android:textColor="@color/accent"
+            android:textSize="15dp" />
 
     </LinearLayout>
 

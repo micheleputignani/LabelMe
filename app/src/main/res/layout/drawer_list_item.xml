@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/primary_dark"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingTop="8dp">
@@ -21,11 +21,11 @@
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/icon"
         android:paddingLeft="20dp"
         android:paddingTop="4dp"
-        android:textColor="@color/white"
+        android:textColor="@color/accent"
         android:textSize="15sp"
-        android:textStyle="bold"
-        android:layout_toRightOf="@+id/icon" />
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -1,15 +1,16 @@
 package src.com.labelme.core;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 import src.com.labelme.R;
 import src.com.labelme.fragment.HelpFragment;
@@ -18,100 +19,138 @@ import src.com.labelme.fragment.InfoFragment;
 import src.com.labelme.fragment.LabelFragment;
 import src.com.labelme.fragment.ProfileFragment;
 import src.com.labelme.fragment.SettingsFragment;
+import src.com.labelme.helper.SessionManager;
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
+public class MainActivity extends AppCompatActivity {
+    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle drawerToggle;
 
-    private static String TAG = MainActivity.class.getSimpleName();
+    // user fields
+    private TextView user_name;
+    private TextView user_email;
 
-    private Toolbar mToolbar;
-    private FragmentDrawer drawerFragment;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        // set a Toolbar to replace the ActionBar
+        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
 
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        // find our drawer view
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
 
-        drawerFragment = (FragmentDrawer) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
-        drawerFragment.setDrawerListener(this);
 
-        // display the first navigation drawer view on app launch
-        displayView(0);
+        drawerToggle = setupDrawerToggle();
+
+        firstFragment();
+
+        // setup drawer view
+        setupDrawerContent(navigationView);
+        drawerLayout.setDrawerListener(drawerToggle);
+
+        session = new SessionManager(getApplicationContext());
+
+        user_name = (TextView) findViewById(R.id.user_name);
+        user_email = (TextView) findViewById(R.id.user_email);
+        user_name.setText(session.getUser_name());
+        user_email.setText(session.getUser_email());
     }
 
+    private void firstFragment() {
+        // start with home fragment
+        Fragment fragment = null;
+        Class fragmentClass = HomeFragment.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        // insert the fragment by replacing any exiting fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+    }
+
+    private ActionBarDrawerToggle setupDrawerToggle() {
+        return new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+    }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                selectDrawerItem(menuItem);
+                return true;
+            }
+        });
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+        // create a new fragment and specify the fragment to show based on position
+        Fragment fragment = null;
+        Class fragmentClass = null;
+        switch (menuItem.getItemId()) {
+            case R.id.home_fragment:
+                fragmentClass = HomeFragment.class;
+                break;
+            case R.id.label_fragment:
+                fragmentClass = LabelFragment.class;
+                break;
+            case R.id.profile_fragment:
+                fragmentClass = ProfileFragment.class;
+                break;
+            case R.id.settings_fragment:
+                fragmentClass = SettingsFragment.class;
+                break;
+            case R.id.help_fragment:
+                fragmentClass = HelpFragment.class;
+                break;
+            case R.id.info_fragment:
+                fragmentClass = InfoFragment.class;
+                break;
+        }
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // insert the fragment by replacing any exiting fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+
+        // highlight the selected item, update the title and close the drawer
+        menuItem.setChecked(true);
+        setTitle(menuItem.getTitle());
+        drawerLayout.closeDrawers();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onDrawerItemSelected(View view, int position) {
-        displayView(position);
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
     }
 
-    private void displayView(int position) {
-        Fragment fragment = null;
-        String title = getString(R.string.app_name);
-        switch (position) {
-            case 0:
-                fragment = new HomeFragment();
-                title = getString(R.string.title_home);
-                break;
-            case 1:
-                fragment = new LabelFragment();
-                title = getString(R.string.title_labels);
-                break;
-            case 2:
-                fragment = new ProfileFragment();
-                title = getString(R.string.title_profile);
-                break;
-            case 3:
-                fragment = new SettingsFragment();
-                title = getString(R.string.title_settings);
-                break;
-            case 4:
-                fragment = new HelpFragment();
-                title = getString(R.string.title_help);
-                break;
-            case 5:
-                fragment = new InfoFragment();
-                title = getString(R.string.title_info);
-                break;
-            default:
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_body, fragment);
-            fragmentTransaction.commit();
-
-            // set the toolbar title
-            getSupportActionBar().setTitle(title);
-        }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // pass any configuration change to the drawer toggles
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 }
