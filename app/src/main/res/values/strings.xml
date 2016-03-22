@@ -1,47 +1,20 @@
 <resources>
-    <string name="app_name">Label Me</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Sticker</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="home">Home</string>
-    <string name="labels">Labels</string>
-    <string name="profile">Profile</string>
-    <string name="settings">Settings</string>
-    <string name="help">Help &amp; feedback</string>
-    <string name="info">Info</string>
-
-    <!-- Navigation Drawer item labels -->
-    <string-array name="nav_drawer_labels">
-        <item>@string/home</item>
-        <item>@string/labels</item>
-        <item>@string/profile</item>
-        <item>@string/settings</item>
-        <item>@string/help</item>
-        <item>@string/info</item>
-    </string-array>
-
     <string name="title_home">Home</string>
-    <string name="title_labels">Labels</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_labels">My labels</string>
+    <string name="title_ratings">Rated labels</string>
     <string name="title_settings">Settings</string>
     <string name="title_help">Help &amp; feedback</string>
     <string name="title_info">Info</string>
-
-    <!-- Nav Drawer List Item Icons -->
-    <!-- Keep them in order as the titles are in -->
-    <array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_label</item>
-        <item>@drawable/ic_account</item>
-        <item>@drawable/ic_settings</item>
-        <item>@drawable/ic_help</item>
-        <item>@drawable/ic_info</item>
-    </array>
-
-    <!-- Content Description -->
-    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_logout">Logout</string>
+    <string name="title_existing_labels">Existing labels</string>
+    <string name="title_crop">New label</string>
+    <string name="title_first_subtitle">Cropping</string>
+    <string name="title_second_subtitle">Upload</string>
 
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
@@ -49,14 +22,26 @@
     <string name="hint_label">Insert label</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
-    <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
-    <string name="welcome">Welcome</string>
+    <string name="btn_link_to_register">Don\'t have an account?</string>
+    <string name="btn_link_to_login">Are you a member?</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Full name</string>
-    <string name="rating_text">How much are you sure \nof your choice?</string>
+    <string name="rating_text">Truth value</string>
+    <string name="title_label">Label</string>
+    <string name="title_author">Author</string>
+    <string name="rating_title">Rating</string>
+    <string name="average_title">Average rating</string>
+    <string name="personal_rating_value">Your rating</string>
+    <string name="rating_value">Rating value: </string>
+    <string name="personal_details">Personal details</string>
+    <string name="change_password">Change password</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="original_image">Original image</string>
+    <string name="btn_vote">VOTE</string>
+    <string name="crop_mode">Crop mode</string>
 
-    <!-- Menu -->
+    <!-- Menu spinner -->
     <string name="arrow_forward">Next</string>
     <string name="done">Done</string>
     <string-array name="cropMode_array">
@@ -70,4 +55,51 @@
         <item>Free</item>
         <item>Circle</item>
     </string-array>
+
+    <!-- dialog messages -->
+    <string name="loading_images">Loading images, please wait...</string>
+    <string name="loading_labels">Loading labels, please wait...</string>
+    <string name="loading_ratings_labels">Loading rated labels, please wait...</string>
+    <string name="login">Loggin in...</string>
+    <string name="logout_question">Are you sure to logout?</string>
+    <string name="logout">Logging out...</string>
+    <string name="check_existing_labels">Check for existing labels, please wait...</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="change">CHANGE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="email_error">enter a valid email address</string>
+    <string name="password_error">between 8 and 15 alphanumeric characters</string>
+    <string name="name_error">enter a valid name</string>
+    <string name="upload_label">Upload label, please wait...</string>
+    <string name="label_error">label field cannot be empty</string>
+    <string name="title_rating_dialog">Enter your rating</string>
+    <string name="title_password_dialog">Change password</string>
+    <string name="information">Information</string>
+    <string name="existing_labels_found">There are labels for the selected image, would you like to see them?</string>
+
+    <!-- Toast messages -->
+    <string name="required_fields">Fill the fields, please.</string>
+    <string name="login_success">Logged in successfully.</string>
+    <string name="login_failed">Login failed.</string>
+    <string name="registration_success">Account successfully created.</string>
+    <string name="registration_failed">Registration failed.</string>
+    <string name="no_existing_labels_found">There are no labels for the selected image.</string>
+    <string name="upload_success">Upload success.</string>
+    <string name="upload_failed">Upload failed.</string>
+    <string name="no_images_found">There are no images.</string>
+    <string name="no_personal_labels">There are no labels you created.</string>
+    <string name="change_password_success">Password changed.</string>
+    <string name="change_password_failed">Password not changed, check the fields.</string>
+    <string name="no_user_found">User not found.</string>
+    <string name="insert_rating_success">Rating added.</string>
+    <string name="insert_rating_failed">It was not possible to insert your rating.</string>
+    <string name="insert_rating_already_exist">You have already rated this label.</string>
+    <string name="no_personal_ratings_labels_found">There are no labels you rated.</string>
+    <string name="valid_password">Enter a valid password</string>
+    <string name="double_back_pressed">Press again to exit</string>
+    <string name="download_image_failed">It was not possible to download images.</string>
+    <string name="connection_off">Check your connection.</string>
+    <string name="airplane_mode_on">Turn OFF airplane mode.</string>
+    <string name="email_already_exist">User already registered.</string>
 </resources>

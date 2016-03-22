@@ -1,8 +1,5 @@
 package src.com.labelme.fragment;
 
-/**
- * Created by Ravi on 29/07/15.
- */
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -8,11 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +23,10 @@ import java.util.List;
 
 import src.com.labelme.R;
 import src.com.labelme.adapter.ListViewAdapter;
+import src.com.labelme.helper.AppConfig;
+import src.com.labelme.helper.CheckNetwork;
 import src.com.labelme.helper.JSONParser;
+import src.com.labelme.helper.SessionManager;
 
 public class LabelFragment extends Fragment {
 
@@ -40,17 +43,12 @@ public class LabelFragment extends Fragment {
     private ArrayList<String> images;
     private ArrayList<String> titles;
 
-    // url to get all labels list
-    private static String url_all_labels = "http://androidlabelme.altervista.org/url_all_labels.php";
-
-    // JSON Node name
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_LABELS = "labels";
-    private static final String TAG_IMAGE = "cropped_image";
-    private static final String TAG_TITLE = "label";
-
     // json labels JSONArray
     JSONArray json_labels = null;
+
+    // session manager
+    SessionManager session;
+    private int success;
 
     public LabelFragment() {
     }
@@ -73,19 +71,35 @@ public class LabelFragment extends Fragment {
         labelsList = new ArrayList<HashMap<String, String>>();
 
         // loading json_labels in background thread
-        new loadAllLabels().execute();
+        loadAllLabels();
         return view;
     }
 
     @Override
     public void onViewCreated(View view, final Bundle savedInstanceState) {
-        // on selecting single list item
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "Clicked list item", Toast.LENGTH_LONG).show();
-            }
-        });
+
+    }
+
+    private void loadAllLabels() {
+        int result = CheckNetwork.isInternetAvailable(getActivity());
+        if (result == 1) {
+            new loadAllLabels().execute();
+        } else {
+            showToast(result);
+        }
+    }
+
+    private void showToast(int type) {
+        String message = "";
+        switch (type) {
+            case -1:
+                message = getResources().getString(R.string.airplane_mode_on);
+                break;
+            case 0:
+                message = getResources().getString(R.string.connection_off);
+                break;
+        }
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -98,8 +112,8 @@ public class LabelFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(getActivity());
-            pDialog.setMessage("Loading labels, please wait...");
+            pDialog = new ProgressDialog(getActivity(), R.style.AppTheme_Dialog);
+            pDialog.setMessage(getResources().getString(R.string.loading_labels));
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -109,36 +123,38 @@ public class LabelFragment extends Fragment {
          * getting all lables from url
          */
         protected String doInBackground(String... args) {
+            session = new SessionManager(getActivity());
             // building parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair(AppConfig.TAG_AUTHOR, session.getUser_id()));
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(url_all_labels, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(AppConfig.url_all_labels, "POST", params);
 
             // check your log cat for JSON response
             Log.d("All json_labels: ", json.toString());
 
             try {
                 // checking for SUCCESS TAG
-                int success = json.getInt(TAG_SUCCESS);
+                success = json.getInt(AppConfig.TAG_SUCCESS);
                 if (success == 1) {
                     // json_labels found
                     // getting array of labels
-                    json_labels = json.getJSONArray(TAG_LABELS);
+                    json_labels = json.getJSONArray(AppConfig.TAG_LABELS_ARRAY);
 
                     // looping through all labels
                     for (int i = 0; i < json_labels.length(); i++) {
                         JSONObject c = json_labels.getJSONObject(i);
 
                         // storing each json item in variable
-                        String image = c.getString(TAG_IMAGE);
-                        String label = c.getString(TAG_TITLE);
+                        String image = c.getString(AppConfig.TAG_CROPPED_IMAGE);
+                        String label = c.getString(AppConfig.TAG_LABEL);
 
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
-                        map.put(TAG_IMAGE, image);
-                        map.put(TAG_TITLE, label);
+                        map.put(AppConfig.TAG_CROPPED_IMAGE, image);
+                        map.put(AppConfig.TAG_LABEL, label);
 
                         images.add(image);
                         titles.add(label);
@@ -159,19 +175,19 @@ public class LabelFragment extends Fragment {
             // dismiss the dialog after getting all labels
             pDialog.dismiss();
 
-            // updating UI from background thread
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+            switch (success) {
+                case 1:
                     // updating parsed JSON data into ListView
-
                     // creating ListViewAdapter obejct
                     ListViewAdapter listViewAdapter = new ListViewAdapter(getActivity(), images, titles);
                     // adding adapter to listview
                     listView.setAdapter(listViewAdapter);
-                }
-            });
+                    break;
+                case 0:
+                    String toast_message = getResources().getString(R.string.no_personal_labels);
+                    Toast.makeText(getActivity(), toast_message, Toast.LENGTH_SHORT).show();
+                    break;
+            }
         }
     }
-
 }
