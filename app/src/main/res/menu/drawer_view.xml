@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home_fragment"
+            android:icon="@drawable/ic_home"
+            android:title="@string/title_home" />
+        <item
+            android:id="@+id/label_fragment"
+            android:icon="@drawable/ic_label"
+            android:title="@string/title_labels" />
+
+        <item
+            android:id="@+id/ratings_label_fragment"
+            android:icon="@drawable/ic_star"
+            android:title="@string/title_ratings" />
+
+    </group>
+</menu>
