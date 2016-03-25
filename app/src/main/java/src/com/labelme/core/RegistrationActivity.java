@@ -143,7 +143,7 @@ public class RegistrationActivity extends Activity {
             super.onPreExecute();
             // Progress dialog
             pDialog = new ProgressDialog(RegistrationActivity.this, R.style.AppTheme_Dialog);
-            pDialog.setMessage(getResources().getString(R.string.login));
+            pDialog.setMessage(getResources().getString(R.string.signup));
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();

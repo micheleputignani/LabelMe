@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sticker</string>
+    <string name="app_name">Shape Annotation</string>
     <string name="average_title">Rating medio</string>
     <string name="btn_link_to_login">Sei un membro?</string>
     <string name="btn_link_to_register">Non hai un account?</string>
@@ -19,7 +19,7 @@
     <string name="existing_labels_found">Ci sono etichette esistenti per l\'immagine selezionata, vuoi visualizzarle?</string>
     <string name="hint_email">Email</string>
     <string name="hint_label">Inserisci etichetta</string>
-    <string name="hint_name">Nome completo</string>
+    <string name="hint_name">Nominativo</string>
     <string name="hint_password">Password</string>
     <string name="arrow_forward">Successivo</string>
     <string name="information">Informazione</string>
@@ -30,10 +30,10 @@
     <string name="loading_images">Sto caricando le immagini, attendi...</string>
     <string name="loading_labels">Sto caricando le etichette, attendi...</string>
     <string name="loading_ratings_labels">Sto caricando le etichette che hai votato, attendi...</string>
-    <string name="login">Sto entrando...</string>
+    <string name="login">Accesso in corso...</string>
     <string name="login_failed">Accesso fallito.</string>
     <string name="login_success">Loggato con successo.</string>
-    <string name="logout">Sto uscendo...</string>
+    <string name="logout">Uscita in corso...</string>
     <string name="logout_question">Sei sicuro di voler uscire?</string>
     <string name="name">Nome completo</string>
     <string name="no">NO</string>
@@ -80,4 +80,9 @@
     <string name="name_error">inserisci un nominativo valido</string>
     <string name="check_connection">Controlla la tua connessione.</string>
     <string name="email_already_exist">Utente già registrato.</string>
+    <string name="btn_vote">VOTA</string>
+    <string name="connection_off">Controlla la tua connessione.</string>
+    <string name="crop_mode">Modalità di ritaglio</string>
+    <string name="original_image">Immagine originale</string>
+    <string name="signup">Registrazione in corso...</string>
 </resources>

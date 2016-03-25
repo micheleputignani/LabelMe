@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sticker</string>
+    <string name="app_name">Shape Annotation</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -60,7 +60,8 @@
     <string name="loading_images">Loading images, please wait...</string>
     <string name="loading_labels">Loading labels, please wait...</string>
     <string name="loading_ratings_labels">Loading rated labels, please wait...</string>
-    <string name="login">Loggin in...</string>
+    <string name="login">Log in...</string>
+    <string name="signup">Sign up...</string>
     <string name="logout_question">Are you sure to logout?</string>
     <string name="logout">Logging out...</string>
     <string name="check_existing_labels">Check for existing labels, please wait...</string>
