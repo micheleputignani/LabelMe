@@ -29,6 +29,14 @@ import src.com.labelme.helper.Base64Helper;
 import src.com.labelme.helper.CheckNetwork;
 import src.com.labelme.helper.JSONParser;
 
+/**
+ * Classe relativa alla registrazione di un nuovo utente all'applicazione.
+ * In questa classe sono richieste le informazioni base all'utente, come:
+ * email per l'accesso all'applicazione;
+ * password per proteggere l'account;
+ * nominativo per la visualizzazione del nome e cognome nelle varie schermate.
+ */
+
 public class RegistrationActivity extends Activity {
 
     private EditText inputName;

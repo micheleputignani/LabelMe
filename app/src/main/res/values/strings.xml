@@ -1,21 +1,25 @@
 <resources>
-    <string name="app_name">Shape Annotation</string>
+    <!-- App name -->
+    <string name="app_name">Shape\\nAnnotation</string>
 
+    <!-- Open - close navigation drawer -->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <!-- Activity title -->
     <string name="title_home">Home</string>
     <string name="title_labels">My labels</string>
-    <string name="title_ratings">Rated labels</string>
-    <string name="title_settings">Settings</string>
-    <string name="title_help">Help &amp; feedback</string>
-    <string name="title_info">Info</string>
-    <string name="title_logout">Logout</string>
-    <string name="title_existing_labels">Existing labels</string>
+    <string name="title_ratings">My ratings</string>
+    <string name="title_library">All labels</string>
     <string name="title_crop">New label</string>
     <string name="title_first_subtitle">Cropping</string>
     <string name="title_second_subtitle">Upload</string>
+    <string name="title_existing_labels">Existing labels</string>
+    <string name="title_account">Account</string>
+    <string name="title_help">Help &amp; feedback</string>
+    <string name="title_info">Info</string>
 
+    <string name="title_logout">Logout</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Full name</string>
@@ -26,58 +30,61 @@
     <string name="btn_link_to_login">Are you a member?</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Full name</string>
-    <string name="rating_text">Truth value</string>
+    <string name="rating_text">Sureness level</string>
     <string name="title_label">Label</string>
     <string name="title_author">Author</string>
-    <string name="rating_title">Rating</string>
+    <string name="rating_title">Score</string>
     <string name="average_title">Average rating</string>
     <string name="personal_rating_value">Your rating</string>
-    <string name="rating_value">Rating value: </string>
+    <string name="rating_value">Rating value:</string>
     <string name="personal_details">Personal details</string>
     <string name="change_password">Change password</string>
     <string name="current_password">Current password</string>
     <string name="new_password">New password</string>
     <string name="original_image">Original image</string>
-    <string name="btn_vote">VOTE</string>
+    <string name="btn_vote">RATE</string>
     <string name="crop_mode">Crop mode</string>
+    <string name="cropped_image_title">Cropped image</string>
+    <string name="confirm_rate">RATE</string>
+    <string name="dismiss_rate">CANCEL</string>
 
     <!-- Menu spinner -->
     <string name="arrow_forward">Next</string>
     <string name="done">Done</string>
     <string-array name="cropMode_array">
-        <item>Fit image</item>
+        <item>Free</item>
         <item>1:1</item>
         <item>3:4</item>
         <item>4:3</item>
         <item>9:16</item>
         <item>16:9</item>
-        <item>Custom</item>
-        <item>Free</item>
+        <item>Bounding box</item>
         <item>Circle</item>
     </string-array>
 
     <!-- dialog messages -->
-    <string name="loading_images">Loading images, please wait...</string>
-    <string name="loading_labels">Loading labels, please wait...</string>
-    <string name="loading_ratings_labels">Loading rated labels, please wait...</string>
-    <string name="login">Log in...</string>
-    <string name="signup">Sign up...</string>
+    <string name="loading_images">Loading images&#8230;</string>
+    <string name="loading_labels">Loading your labels&#8230;</string>
+    <string name="loading_ratings_labels">Loading your ratings&#8230;</string>
+    <string name="login">Log in&#8230;</string>
+    <string name="signup">Sign up&#8230;</string>
     <string name="logout_question">Are you sure to logout?</string>
-    <string name="logout">Logging out...</string>
-    <string name="check_existing_labels">Check for existing labels, please wait...</string>
-    <string name="yes">YES</string>
-    <string name="no">NO</string>
-    <string name="change">CHANGE</string>
-    <string name="cancel">CANCEL</string>
+    <string name="logout">Logging out&#8230;</string>
+    <string name="check_existing_labels">Checking existing labels&#8230;</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="change">Change</string>
+    <string name="cancel">Cancel</string>
     <string name="email_error">enter a valid email address</string>
     <string name="password_error">between 8 and 15 alphanumeric characters</string>
     <string name="name_error">enter a valid name</string>
-    <string name="upload_label">Upload label, please wait...</string>
+    <string name="upload_label">Uploading label&#8230;</string>
     <string name="label_error">label field cannot be empty</string>
-    <string name="title_rating_dialog">Enter your rating</string>
+    <string name="title_rating_dialog">Your rating</string>
     <string name="title_password_dialog">Change password</string>
     <string name="information">Information</string>
     <string name="existing_labels_found">There are labels for the selected image, would you like to see them?</string>
+    <string name="load_schedule">Loading all labels&#8230;</string>
 
     <!-- Toast messages -->
     <string name="required_fields">Fill the fields, please.</string>
@@ -103,4 +110,5 @@
     <string name="connection_off">Check your connection.</string>
     <string name="airplane_mode_on">Turn OFF airplane mode.</string>
     <string name="email_already_exist">User already registered.</string>
+    <string name="no_labels_found">No labels found.</string>
 </resources>

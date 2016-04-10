@@ -30,8 +30,11 @@ import src.com.labelme.helper.Base64Helper;
 import src.com.labelme.helper.SessionManager;
 
 /**
- * Created by Mirko Putignani on 25/02/2016.
+ * Classe relativa alla prima fase della creazione di una nuova annotazione,
+ * l'utente in questa fase provvede a selezionare tramite il riquadro la forma
+ * che desidera annotare.
  */
+
 public class FirstCropActivity extends AppCompatActivity {
 
     // Context
@@ -179,7 +182,7 @@ public class FirstCropActivity extends AppCompatActivity {
     }
 
     private void settings() {
-        Intent i = new Intent(FirstCropActivity.this, SettingsActivity.class);
+        Intent i = new Intent(FirstCropActivity.this, AccountActivity.class);
         startActivity(i);
         finish();
     }

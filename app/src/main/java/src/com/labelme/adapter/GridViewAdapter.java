@@ -13,6 +13,12 @@ import java.util.ArrayList;
 
 import src.com.labelme.R;
 
+/**
+ * Classe adapter per la visualizzazione
+ * della lista delle immagini presenti nel training set,
+ * scaricandole dalla sorgente dati.
+ */
+
 public class GridViewAdapter extends BaseAdapter {
 
     // Context

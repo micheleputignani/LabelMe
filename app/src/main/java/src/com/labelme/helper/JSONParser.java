@@ -21,6 +21,10 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+/**
+ * Classe di supporto per la parserizzazione del JSON proveniente dal file PHP.
+ */
+
 public class JSONParser {
 
     static InputStream is = null;

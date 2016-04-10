@@ -20,11 +20,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import src.com.labelme.R;
+import src.com.labelme.fragment.AllLabelsFragment;
 import src.com.labelme.fragment.HomeFragment;
-import src.com.labelme.fragment.LabelFragment;
-import src.com.labelme.fragment.RatedLabelsFragment;
+import src.com.labelme.fragment.MyLabelsFragment;
+import src.com.labelme.fragment.MyRatingsFragment;
 import src.com.labelme.helper.CheckNetwork;
 import src.com.labelme.helper.SessionManager;
+
+/**
+ * Classe relativa al menù laterale, cioè il Navigation Drawer.
+ * Questo menù serve per navigare tra le funzioni implementate
+ * nell'applicazione, tali funzioni sono:
+ * Home, contenente le immagini del training set;
+ * My Labels, contenente le annotazioni create dall'utente collegato;
+ * My Ratings, contenente le annotazioni votate dall'utente collegato;
+ * All Labels, contenente tutte le annotazioni presenti nella sorgente dati.
+ */
 
 public class MainActivity extends AppCompatActivity {
     private static String TAG;
@@ -118,13 +129,18 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle(TAG);
                     break;
                 case R.id.label_fragment:
-                    fragmentClass = LabelFragment.class;
+                    fragmentClass = MyLabelsFragment.class;
                     TAG = getResources().getString(R.string.title_labels);
                     getSupportActionBar().setTitle(TAG);
                     break;
                 case R.id.ratings_label_fragment:
-                    fragmentClass = RatedLabelsFragment.class;
+                    fragmentClass = MyRatingsFragment.class;
                     TAG = getResources().getString(R.string.title_ratings);
+                    getSupportActionBar().setTitle(TAG);
+                    break;
+                case R.id.all_labels_fragment:
+                    fragmentClass = AllLabelsFragment.class;
+                    TAG = getResources().getString(R.string.title_library);
                     getSupportActionBar().setTitle(TAG);
                     break;
             }
@@ -202,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void settings() {
-        Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+        Intent i = new Intent(MainActivity.this, AccountActivity.class);
         startActivity(i);
     }
 

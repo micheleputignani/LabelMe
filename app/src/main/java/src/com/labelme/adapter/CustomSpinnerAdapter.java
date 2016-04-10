@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import src.com.labelme.R;
 
 /**
- * Created by Mirko Putignani on 25/02/2016.
+ * Classe adapter per la visualizzazione dello spinner
+ * relativo alle modalità di ritaglio implementate.
  */
+
 public class CustomSpinnerAdapter extends ArrayAdapter<String> {
 
     private Context context;

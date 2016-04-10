@@ -6,8 +6,12 @@ import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
 /**
- * Created by Mirko Putignani on 26/02/2016.
+ * Classe di supporto per la gestione della sessione utente.
+ * dopo aver effettuato l'accesso all'applicazione, viene memorizzata la sessione
+ * in modo tale da non dover rifare l'accesso all'avvio successivo dell'applicazione.
+ * Dopo aver effettuato il logout dall'applicazione, la sessione viene azzerata.
  */
+
 public class SessionManager {
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();

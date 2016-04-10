@@ -31,10 +31,12 @@ import src.com.labelme.helper.CheckNetwork;
 import src.com.labelme.helper.JSONParser;
 import src.com.labelme.helper.SessionManager;
 
-
 /**
- * Created by Mirko Putignani on 25/01/2016.
+ * Classe relativa all'accesso all'applicazione.
+ * In questa classe sono richiesti all'utente le credenziali d'accesso (email e password)
+ * inserite in fase di registrazione.
  */
+
 public class LoginActivity extends Activity {
 
     private String toast_message = "";

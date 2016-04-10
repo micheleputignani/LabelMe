@@ -34,6 +34,10 @@ import src.com.labelme.helper.CheckNetwork;
 import src.com.labelme.helper.JSONParser;
 import src.com.labelme.helper.SessionManager;
 
+/**
+ * Fragment relativo alle immagini del training set.
+ */
+
 public class HomeFragment extends Fragment {
 
     // Progress Dialog

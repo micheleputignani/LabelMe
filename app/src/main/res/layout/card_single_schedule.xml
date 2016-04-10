@@ -2,7 +2,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="168dp"
+    android:layout_height="120dp"
     android:layout_margin="8dp"
     android:background="@color/background"
     card_view:cardCornerRadius="2dp"
@@ -22,14 +22,14 @@
 
         <LinearLayout
             android:id="@+id/text_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
-            android:layout_toRightOf="@id/thumbnail"
-            android:orientation="vertical"
-            android:padding="4dp"
             android:layout_toLeftOf="@+id/vote"
-            android:layout_toStartOf="@+id/vote">
+            android:layout_toRightOf="@id/thumbnail"
+            android:layout_toStartOf="@+id/vote"
+            android:orientation="vertical"
+            android:padding="4dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -85,46 +85,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp">
-
-                <TextView
-                    android:id="@+id/rating_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rating_title"
-                    android:textColor="@color/primary_text"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rating_title"
-                    android:layout_marginLeft="8dp"
-                    android:maxLines="1"
-                    android:textColor="@color/secondary_text"
-                    android:textSize="14sp"
-                    android:textStyle="italic" />
-
-            </RelativeLayout>
-
         </LinearLayout>
-
-        <Button
-            android:id="@+id/vote"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:text="@string/btn_vote"
-            android:textColor="@color/text"
-            android:textSize="16sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:background="@color/accent" />
 
     </RelativeLayout>
 

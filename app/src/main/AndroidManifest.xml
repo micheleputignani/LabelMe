@@ -26,8 +26,8 @@
         <activity android:name=".core.SecondCropActivity" />
         <activity android:name=".core.ExistingLabels" />
         <activity
-            android:name=".core.SettingsActivity"
-            android:label="@string/title_settings"
+            android:name=".core.AccountActivity"
+            android:label="@string/title_account"
             android:theme="@style/AppTheme"></activity>
     </application>
 

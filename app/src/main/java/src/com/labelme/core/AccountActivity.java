@@ -34,10 +34,17 @@ import src.com.labelme.helper.CheckNetwork;
 import src.com.labelme.helper.JSONParser;
 import src.com.labelme.helper.SessionManager;
 
-public class SettingsActivity extends AppCompatActivity {
+/**
+ * Classe relativa all'account utente, nel quale sono visualizzate le informazioni
+ * dell'utente collegato all'applicazione.
+ * L'utente può modificare soltanto la password. Gli altri campi non sono modificabili
+ * in quanto non sono parte fondamentale per il corretto funzionamento dell'applicazione.
+ */
+
+public class AccountActivity extends AppCompatActivity {
 
     // Context
-    private Context context = SettingsActivity.this;
+    private Context context = AccountActivity.this;
     // session manager
     private SessionManager session;
     private JSONParser jsonParser = new JSONParser();
@@ -66,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(getResources().getString(R.string.title_settings));
+        getSupportActionBar().setTitle(getResources().getString(R.string.title_account));
         toolbar.setNavigationIcon(R.drawable.ic_action_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

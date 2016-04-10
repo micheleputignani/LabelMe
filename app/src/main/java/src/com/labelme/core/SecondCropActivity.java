@@ -18,9 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -41,8 +40,11 @@ import src.com.labelme.helper.JSONParser;
 import src.com.labelme.helper.SessionManager;
 
 /**
- * Created by Mirko Putignani on 26/02/2016.
+ * Classe relativa alla seconda fase di annotazione di una forma.
+ * In questa classe sono richiesti all'utente la parola chiave e il grado di certezza.
+ * Se i dati sono completi, l'annotazione viene caricata nella sorgente dati.
  */
+
 public class SecondCropActivity extends AppCompatActivity {
 
     // context
@@ -54,15 +56,14 @@ public class SecondCropActivity extends AppCompatActivity {
     // view
     private ImageView croppedImageResult;
     private EditText inputLabel;
-    private SeekBar seekBar;
-    private TextView seekBarValue;
+    private RatingBar ratingBar;
     private Toolbar toolbar;
     private FloatingActionButton floatingActionButton;
     private ProgressDialog progressDialog;
     private String cropped_image;
     private String cropped_label;
     private int position;
-    private int rating;
+    private float rating;
     private SessionManager session;
     private int success;
 
@@ -89,26 +90,10 @@ public class SecondCropActivity extends AppCompatActivity {
     private void findViews() {
         croppedImageResult = (ImageView) findViewById(R.id.crop_image);
         inputLabel = (EditText) findViewById(R.id.input_label);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBarValue = (TextView) findViewById(R.id.seekBarValue);
-        seekBarValue.setText("0"); // default value
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                seekBarValue.setText(String.valueOf(progress));
-                rating = progress;
-            }
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        rating = ratingBar.getMax();
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
         // set a Toolbar to replace the ActionBar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -125,7 +110,7 @@ public class SecondCropActivity extends AppCompatActivity {
                 finish();
             }
         });
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+
         floatingActionButton.setOnClickListener(btnListener);
     }
 
@@ -138,6 +123,11 @@ public class SecondCropActivity extends AppCompatActivity {
                     if (cropped_label.isEmpty()) {
                         inputLabel.setError(context.getResources().getString(R.string.label_error));
                     } else {
+                        if (ratingBar.getRating() == 0) {
+                            rating = ratingBar.getMax();
+                        } else {
+                            rating = ((ratingBar.getRating()) * 2);
+                        }
                         uploadImage();
                     }
                     break;
@@ -195,7 +185,7 @@ public class SecondCropActivity extends AppCompatActivity {
     }
 
     private void settings() {
-        Intent i = new Intent(SecondCropActivity.this, SettingsActivity.class);
+        Intent i = new Intent(SecondCropActivity.this, AccountActivity.class);
         finish();
         startActivity(i);
     }

@@ -15,6 +15,12 @@ import src.com.labelme.R;
 import src.com.labelme.helper.Base64Helper;
 import src.com.labelme.model.RatingsItem;
 
+/**
+ * Classe adapter per la visualizzazione
+ * della lista delle annotazioni votate dall'utente
+ * collegato all'applicazione.
+ */
+
 public class RatedLabelsAdapter extends RecyclerView.Adapter<RatedLabelsAdapter.ViewHolder> {
     private List<RatingsItem> ratingsItemList;
     private Context context;

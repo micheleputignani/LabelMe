@@ -28,7 +28,11 @@ import src.com.labelme.helper.CheckNetwork;
 import src.com.labelme.helper.JSONParser;
 import src.com.labelme.helper.SessionManager;
 
-public class LabelFragment extends Fragment {
+/**
+ * Fragment relativo alle annotazioni create dall'utente collegato all'applicazione.
+ */
+
+public class MyLabelsFragment extends Fragment {
 
     // Progress dialog
     private ProgressDialog pDialog;
@@ -50,7 +54,7 @@ public class LabelFragment extends Fragment {
     SessionManager session;
     private int success;
 
-    public LabelFragment() {
+    public MyLabelsFragment() {
     }
 
     @Override

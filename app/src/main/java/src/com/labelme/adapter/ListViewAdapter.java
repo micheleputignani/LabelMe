@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import src.com.labelme.R;
 import src.com.labelme.helper.Base64Helper;
 
+/**
+ * Classe adapter per la visualizzazione
+ * della lista delle annotazioni create dall'utente
+ * collegato all'applicazione.
+ */
+
 public class ListViewAdapter extends BaseAdapter {
 
     // Context

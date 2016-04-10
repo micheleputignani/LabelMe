@@ -1,60 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/background"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/ratingBar_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_dialog"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_vertical"
-        android:text="Leave your feedback"
-        android:textColor="@color/primary_text"
-        android:textSize="16sp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ratingBar_info"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="256dp"
-        android:layout_height="64dp"
-        android:layout_alignEnd="@+id/ratingBar"
-        android:layout_alignLeft="@+id/ratingBar"
-        android:layout_alignRight="@+id/ratingBar"
-        android:layout_alignStart="@+id/ratingBar"
-        android:layout_below="@id/ratingBar"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="80dip"
+        android:layout_gravity="center"
+        android:background="@color/primary"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="DisableBaselineAlignment">
 
-        <Button
-            android:id="@+id/cancelButton"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:padding="10dip"
+                android:src="@drawable/ic_star" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
             android:layout_weight="0.5"
-            android:text="Cancel"
-            android:textColor="@color/accent"
-            android:textSize="14sp" />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/confirmButton"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="OK"
-            android:textColor="@color/accent"
-            android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_rating_dialog"
+                android:textColor="@color/primary_text"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
+        </LinearLayout>
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        tools:ignore="DisableBaselineAlignment">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:max="10"
+            android:numStars="5"
+            android:stepSize="1"
+            android:theme="@style/ratingBar" />
+
+    </LinearLayout>
+
+</LinearLayout>

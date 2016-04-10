@@ -1,21 +1,23 @@
 package src.com.labelme.helper;
 
 /**
- * Questa classe contiene tutti gli url delle funzioni php e tutti i TAG per poter prelevare i dati dai file json
+ * Classe relativa alla gestione di tutti gli URL dei file php per le operazioni sulla sorgente dati,
+ * di tutti i nomi dei campi dell'array json proveniente dai file php.
  */
 public class AppConfig {
 
     public static final String url_login = "http://androidlabelme.altervista.org/login.php";
-    public static final String url_all_images = "http://androidlabelme.altervista.org/url_all_images.php";
+    public static final String url_all_images = "http://androidlabelme.altervista.org/all_images.php";
     public static final String url_check_existing_labels = "http://androidlabelme.altervista.org/check_existing_labels.php";
-    public static final String url_all_existing_labels = "http://androidlabelme.altervista.org/url_all_existing_labels.php";
-    public static final String url_uploadImage = "http://androidlabelme.altervista.org/uploadImage.php";
+    public static final String url_all_existing_labels = "http://androidlabelme.altervista.org/all_existing_labels.php";
+    public static final String url_uploadImage = "http://androidlabelme.altervista.org/upload_annotation.php";
     public static final String url_register = "http://androidlabelme.altervista.org/registration.php";
-    public static final String url_all_labels = "http://androidlabelme.altervista.org/url_all_labels.php";
-    public static final String url_ratings = "http://androidlabelme.altervista.org/url_ratings.php";
-    public static final String url_ratings_labels = "http://androidlabelme.altervista.org/url_ratings_labels.php";
-    public static final String url_get_user_password = "http://androidlabelme.altervista.org/url_get_user_password.php";
-    public static final String url_change_password = "http://androidlabelme.altervista.org/url_change_password.php";
+    public static final String url_all_labels = "http://androidlabelme.altervista.org/all_labels.php";
+    public static final String url_ratings = "http://androidlabelme.altervista.org/upload_rating.php";
+    public static final String url_ratings_labels = "http://androidlabelme.altervista.org/ratings_annotation.php";
+    public static final String url_get_user_password = "http://androidlabelme.altervista.org/get_user_password.php";
+    public static final String url_change_password = "http://androidlabelme.altervista.org/change_password.php";
+    public static final String url_schedule = "http://androidlabelme.altervista.org/all_annotation.php";
 
     public static final String TAG_USER_ID = "id";
     public static final String TAG_EMAIL = "email";
@@ -36,4 +38,5 @@ public class AppConfig {
     public static final String TAG_PEOPLE_RATING = "people_rating";
     public static final String TAG_RATINGS_ARRAY = "ratings_labels";
     public static final String TAG_AVERAGE = "average";
+    public static final String TAG_SCHEDULE_ARRAY = "all_labels";
 }

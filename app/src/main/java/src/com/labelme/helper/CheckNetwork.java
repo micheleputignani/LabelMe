@@ -7,14 +7,15 @@ import android.net.NetworkInfo;
 import android.provider.Settings;
 
 /**
- * Created by Mirko Putignani on 15/03/2016.
+ * Classe di supporto per il controllo della connessione alla rete.
  */
+
 public class CheckNetwork extends Activity {
 
     /**
-     * Metodo che controlla lo stato della connesione
-     *
-     * @return
+     * Metodo che controlla lo stato della connessione alla rete
+     * @param context = il contesto dal quale arriva la richiesta di controllo, cioè l'activity chiamante
+     * @return = 1 se la connessione è presente, 0 se la connessione è assente, -1 se è attiva la modalità aereo.
      */
     public static int isInternetAvailable(Context context) {
         int result;

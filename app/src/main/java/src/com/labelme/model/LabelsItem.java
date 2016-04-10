@@ -1,5 +1,9 @@
 package src.com.labelme.model;
 
+/**
+ * Classe di supporto per le annotazioni create dall'utente collegato.
+ */
+
 public class LabelsItem {
     private String imageID;
     private String cropped_image;

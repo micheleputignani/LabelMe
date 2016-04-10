@@ -36,6 +36,13 @@ import src.com.labelme.helper.JSONParser;
 import src.com.labelme.helper.SessionManager;
 import src.com.labelme.model.LabelsItem;
 
+/**
+ * Classe relativa alle etichette esistenti per l'immagine selezionata dalla home.
+ * Qui l'utente può votare una annotazione di un altro utente registrato, il voto
+ * viene inserito nella sorgente dati. Se è già presente un voto per quella annotazione
+ * da quell'utente, viene notificato l'errore a schermo.
+ */
+
 public class ExistingLabels extends AppCompatActivity {
 
     // Context
@@ -127,7 +134,7 @@ public class ExistingLabels extends AppCompatActivity {
     }
 
     private void settings() {
-        Intent i = new Intent(ExistingLabels.this, SettingsActivity.class);
+        Intent i = new Intent(ExistingLabels.this, AccountActivity.class);
         startActivity(i);
         finish();
     }
